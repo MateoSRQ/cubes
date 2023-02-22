@@ -34,31 +34,46 @@ import { es } from 'date-fns/locale';
             x: ['Data.actividad'],
             y: ['Data.date', 'measures']
         });
-        let columns: any = []
-        for (let i=0; i< _dataSource.length; i++) {
-            Object.keys(_dataSource[i]).forEach((key: any, index: any) => {
-                _dataSource[i].key = i;
-                let tuple  = {title: '', dataIndex: '', name: '', width: '200px', render: function(text:any, record:any, index:any) { return text}}
-                tuple.name = key
-                tuple.dataIndex = key
-                tuple.width = '200px'
-                if (key.startsWith('Data.')) {
-                    tuple.title  = key.substring(5)
-                    tuple.width = '400px'
-                }
-                else {
-                    let _name  = key.substring(0, 10)
-                    tuple.title = format(add(Date.parse(_name), {days: 1}),'LLL-yy', { locale: es })
-                    tuple.render = function(text:any, record:any, index:any) { return numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    
-                }
-                _columns.add(tuple)
-            })
+        if (!props.columns) {
+            let columns: any = []
+            for (let i = 0; i < _dataSource.length; i++) {
+                Object.keys(_dataSource[i]).forEach((key: any, index: any) => {
+                    _dataSource[i].key = i;
+                    let tuple = {
+                        title: '',
+                        dataIndex: '',
+                        name: '',
+                        width: '200px',
+                        render: function (text: any, record: any, index: any) {
+                            return text
+                        }
+                    }
+                    tuple.name = key
+                    tuple.dataIndex = key
+                    tuple.width = '200px'
+                    if (key.startsWith('Data.')) {
+                        tuple.title = key.substring(5)
+                        tuple.width = '400px'
+                    } else {
+                        let _name = key.substring(0, 10)
+                        tuple.title = format(add(Date.parse(_name), {days: 1}), 'LLL-yy', {locale: es})
+                        tuple.render = function (text: any, record: any, index: any) {
+                            return numbro(text).format({mantissa: 2, thousandSeparated: true})
+                        }
+
+                    }
+                    _columns.add(tuple)
+                })
+            }
+        }
+        else {
+            console.log('feed columns')
+            _columns = props.columns
         }
     }
 
     console.log('columns')
-    console.log(_columns)
+    console.log([... _columns])
 
     return (
         <ConfigProvider
@@ -90,19 +105,17 @@ import { es } from 'date-fns/locale';
                             expandable={{
                                 expandedRowRender: (record) => {
                                     let query = {...props.cube_query}
-                                    
-                                    query.dimensions =   [                                  
+                                    query.dimensions =   [
                                         "Data.actividadNivel1",
                                         "Data.actividadNivel2",
                                         "Data.date"
                                     ]
-                                    
-
                                     return (
                                     <Cube 
                                         cube_query={query} 
                                         cube_api={props.cube_api} 
                                         cube_token={props.cube_token}
+                                        columns={props.columns?props.columns:null}
                                     />
                                     )
                                 },

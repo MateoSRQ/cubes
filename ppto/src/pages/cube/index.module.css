@@ -1,5 +1,18 @@
 .component {
     width: 100%;
     height: 100%;
-    margin: 10px;
+    /*margin: 10px;*/
 }
+
+.component :global(.ant-table-expanded-row-level-1) > td {
+    padding: 0px !important;
+}
+
+.component :global(.ant-table-expanded-row-level-1) > td > div {
+    padding: 0px !important;
+}
+
+.component :global(.ant-table-expanded-row-level-1) > td thead {
+    display: none !important;
+}
+

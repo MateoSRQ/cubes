@@ -6,17 +6,6 @@ import './App.css'
 const cubejsApi = cubejs('YOUR-CUBEJS-API-TOKEN', {
     apiUrl: 'http://localhost:4000/cubejs-api/v1',
 });
-/*
-orderBy: {totalAmount: desc}) {
-      totalAmount
-      count
-      categoriaNivel1
-      centroNivel1
-      centroNivel2
-    }
-  }
- */
-
 
 const App = () => (
     <QueryBuilder
