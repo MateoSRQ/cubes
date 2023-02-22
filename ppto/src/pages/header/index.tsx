@@ -13,6 +13,7 @@ const MenuItem = (props: any) => {
 
     console.log('props')
     console.log(props)
+    console.log(props.item.id)
     return (
         <Draggable key={props.item.id} draggableId={props.item.id} index={props.index}>
             {(provided, snapshot) => (
@@ -132,9 +133,10 @@ export default () => {
         setItems(_items)
     }
 
+    /*
     console.log('items')
     console.log(items)
-
+*/
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable" direction="horizontal">
@@ -158,7 +160,7 @@ export default () => {
                         >PLUS
                         </div>
                         {items.map((item: any, index: any) => (
-                            <MenuItem item={item} index={index}/>
+                            <MenuItem item={item} index={index} key={item}/>
                             // <Draggable key={item.id} draggableId={item.id} index={index}>
                             //     {(provided, snapshot) => (
                             // <MenuItem provided={provided} item={item} />

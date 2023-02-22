@@ -20,3 +20,10 @@
     height: calc(100% - 40px);
     background-color: white;
 }
+
+.tableContainer {
+    width: 100%;
+    border: 1px solid blue;
+
+    overflow-x: scroll;
+}
