@@ -75,6 +75,34 @@ import { es } from 'date-fns/locale';
     console.log('columns')
     console.log([... _columns])
 
+    const dimensions = [
+        "Data.actividadNivel1",
+        "Data.actividadNivel2",  
+        "Data.actividadNivel3",
+        "Data.actividadNivel4",  
+        "Data.actividadNivel5",
+        "Data.actividadNivel6",  
+        "Data.actividadNivel7",
+    ]
+
+
+
+
+    console.log('dimensions')
+    console.log(props.depth+1)
+    console.log([
+        ...dimensions.slice(0, props.depth+1),
+        "Data.date"
+    ])
+
+    console.log('DS')
+    console.log(_dataSource)
+
+    for (let i = 0; i < _dataSource.length; i++) {
+        _dataSource[i].key = Math.random()
+    }
+
+
     return (
         <ConfigProvider
             theme={{
@@ -100,27 +128,46 @@ import { es } from 'date-fns/locale';
                     </div>
                     <div className={style.tableContainer} >
                         <Table
+
                             dataSource={_dataSource}
                             columns={[... _columns]}
+                            pagination={false}
                             expandable={{
                                 expandedRowRender: (record) => {
+                                    console.log('expanded:')
+                                    console.log(record)
                                     let query = {...props.cube_query}
                                     query.dimensions =   [
-                                        "Data.actividadNivel1",
-                                        "Data.actividadNivel2",
+                                        ...dimensions.slice(0, props.depth+1),
                                         "Data.date"
                                     ]
+
+                                    let filters = []
+                                    for (let i=0; i<=props.depth; i++) {
+                                        filters.push(
+                                            {
+                                                "member": "Data.actividadNivel" + props.depth,
+                                                "operator": "equals",
+                                                "values": [record["Data.actividadNivel" + props.depth]]
+                                            }
+                                        )
+                                    }
+
+                                    query.filters = filters;
+
                                     return (
                                     <Cube 
                                         cube_query={query} 
                                         cube_api={props.cube_api} 
                                         cube_token={props.cube_token}
                                         columns={props.columns?props.columns:null}
+                                        depth={props.depth+1}
                                     />
                                     )
                                 },
-                                //showExpandColumn: false,
-                                expandRowByClick: true
+                                showExpandColumn: true,
+                                
+                                //expandRowByClick: true
                                 //childrenColumnName: 'Data.actividadNivel1'
                                 //rowExpandable: (record) => record.name !== 'Not Expandable',
                             }}

@@ -20,8 +20,6 @@ export default () => {
         ],
         "dimensions": [
             "Data.actividadNivel1",
-            //"Data.actividadNivel2",
-            //"Data.actividadNivel3",
             "Data.date"
         ],
         "timeDimensions": [
@@ -35,6 +33,30 @@ export default () => {
                 "asc"
             ],
             [
+                "Data.actividadNivel2",
+                "asc"
+            ],
+            [
+                "Data.actividadNivel3",
+                "asc"
+            ],
+            [
+                "Data.actividadNivel4",
+                "asc"
+            ],
+            [
+                "Data.actividadNivel5",
+                "asc"
+            ],
+            [
+                "Data.actividadNivel6",
+                "asc"
+            ],
+            [
+                "Data.actividadNivel7",
+                "asc"
+            ],
+            [
                 "Data.date",
                 "asc"
             ]
@@ -43,20 +65,74 @@ export default () => {
 
     const columns = [
         {
-            "title": "actividadNivel1",
+            "title": "Actividad Nivel 1",
             "dataIndex": "Data.actividadNivel1",
             "name": "Data.actividadNivel1",
             render: (text: any, record: any) => (
-                <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '200px' }}>
+                <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '240px' }}>
                     {text}
                 </div>
             ),
         },
         {
-            "title": "actividadNivel2",
+            "title": "Actividad Nivel 2",
             "dataIndex": "Data.actividadNivel2",
             "name": "Data.actividadNivel2",
-            "width": "600px"
+            render: (text: any, record: any) => (
+                <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '240px' }}>
+                    {text}
+                </div>
+            ),
+        },
+        {
+            "title": "Actividad Nivel 3",
+            "dataIndex": "Data.actividadNivel3",
+            "name": "Data.actividadNivel3",
+            render: (text: any, record: any) => (
+                <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '240px' }}>
+                    {text}
+                </div>
+            ),
+        },
+        {
+            "title": "Actividad Nivel 4",
+            "dataIndex": "Data.actividadNivel4",
+            "name": "Data.actividadNivel4",
+            render: (text: any, record: any) => (
+                <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '240px' }}>
+                    {text}
+                </div>
+            ),
+        },
+        {
+            "title": "Actividad Nivel 5",
+            "dataIndex": "Data.actividadNivel5",
+            "name": "Data.actividadNivel5",
+            render: (text: any, record: any) => (
+                <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '240px' }}>
+                    {text}
+                </div>
+            ),
+        },
+        {
+            "title": "Actividad Nivel 6",
+            "dataIndex": "Data.actividadNivel6",
+            "name": "Data.actividadNivel6",
+            render: (text: any, record: any) => (
+                <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '240px' }}>
+                    {text}
+                </div>
+            ),
+        },
+        {
+            "title": "Actividad Nivel 7",
+            "dataIndex": "Data.actividadNivel7",
+            "name": "Data.actividadNivel7",
+            render: (text: any, record: any) => (
+                <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '240px' }}>
+                    {text}
+                </div>
+            ),
         },
         {
             "title": "ene-23",
@@ -66,7 +142,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -79,7 +155,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -92,7 +168,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -105,7 +181,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -118,7 +194,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -131,7 +207,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -144,7 +220,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -157,7 +233,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -170,7 +246,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -183,7 +259,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -196,7 +272,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -209,7 +285,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -222,7 +298,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -235,7 +311,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -248,7 +324,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -261,7 +337,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -274,7 +350,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -287,7 +363,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -300,7 +376,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -313,7 +389,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -326,7 +402,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -339,7 +415,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -352,7 +428,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -365,7 +441,7 @@ export default () => {
             "render": function (text: any, record: any, index: any) {
                 return (
                     <div style={{ wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right' }}>
-                        {numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                        {isNaN(text)?0.00:numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
             }
@@ -407,6 +483,7 @@ export default () => {
                             cube_token={CUBEJS_TOKEN}
                             cube_query={cubejs_query}
                             columns={columns}
+                            depth={1}
                         />
                     </Scrollbars>
                 </div>
