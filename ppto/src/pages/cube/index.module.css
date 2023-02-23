@@ -22,4 +22,19 @@
 }
 
 
+.component :global(.ant-table-row-level-0) * {
+    color: #084594 !important;
+}
+
+.component :global(.ant-table-row-level-1) * {
+    color: #2171b5 !important;
+}
+
+.component :global(.ant-table-row-level-2) * {
+    color: #4292c6 !important;
+}
+
+
+/* [,,,'#6baed6','#4292c6','#2171b5','#084594'] */
+
 

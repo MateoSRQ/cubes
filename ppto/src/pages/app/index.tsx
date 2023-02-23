@@ -470,7 +470,7 @@ export default () => {
             <div className={style.component}>
                 <div className={style.container} ref={ref}>
                     <div className={style.menuContainer}>
-                        <Header />
+                        {/* <Header /> */}
                     </div>
                     <Scrollbars className={style.tableContainer}  style={{
                         width: (width - 60) + 'px',
