@@ -27,3 +27,13 @@
 
     overflow-x: scroll;
 }
+
+
+.item  {
+   cursor: pointer;
+}
+
+.item:hover {
+    text-decoration: underline;
+    color: #2762d9 !important;
+}

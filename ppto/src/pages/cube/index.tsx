@@ -8,25 +8,26 @@ import numbro from 'numbro'
 import {ConfigProvider, Table} from 'antd';
 import {format, add} from 'date-fns'
 import {es} from 'date-fns/locale';
-import { LoadingOutlined } from '@ant-design/icons';
-import { Spin } from 'antd';
+import {LoadingOutlined} from '@ant-design/icons';
+import {Spin} from 'antd';
 
 const userInput = '\u200B';
-const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />
+const antIcon = <LoadingOutlined style={{fontSize: 48}} spin/>
 
 const Cube = (props: any) => {
-    console.log('CUBE PROPS')
-    console.log(props)
-    // const [data, setData] = useState<any>([])
-    // const [columns, setColumns] = useState<any>([])
-
     const cubejsApi = cubejs(props.cube_token, {
         apiUrl: props.cube_api,
     });
-
     const {resultSet, isLoading, error, progress} = useCubeQuery(props.cube_query, {cubejsApi: cubejsApi});
     let _dataSource: any = []
     let _columns = new Set()
+
+
+    console.log('cube')
+    console.log(props)
+    console.log('isLoading: ' + isLoading)
+    console.log('error: ' + error)
+    console.log('progress: ' + JSON.stringify(progress))
 
     if (!resultSet) {
         return null;
@@ -35,6 +36,8 @@ const Cube = (props: any) => {
             x: ['Data.actividad'],
             y: ['Data.date', 'measures']
         });
+        _columns = props.columns
+        /*
         if (!props.columns) {
             let columns: any = []
             for (let i = 0; i < _dataSource.length; i++) {
@@ -69,10 +72,8 @@ const Cube = (props: any) => {
             console.log('feed columns')
             _columns = props.columns
         }
+        */
     }
-
-    console.log('columns')
-    console.log([..._columns])
 
     const dimensions = [
         "Data.actividadNivel1",
@@ -84,26 +85,23 @@ const Cube = (props: any) => {
         "Data.actividadNivel7",
     ]
 
+    /*
     console.log('dimensions')
     console.log(props.depth + 1)
     console.log([
         ...dimensions.slice(0, props.depth + 1),
         "Data.date"
     ])
+    */
 
-    console.log('DS')
-    console.log(_dataSource)
     for (let i = 0; i < _dataSource.length; i++) {
         _dataSource[i].key = Math.random()
         _dataSource[i]['Data.actividad'] = ''
-
-
-        for (let j=1; j<= 7; j++) {
+        for (let j = 1; j <= 7; j++) {
             if (_dataSource[i]['Data.actividadNivel' + j] != undefined) {
-                _dataSource[i]['Data.actividad'] = userInput.padEnd(j*5) + _dataSource[i]['Data.actividadNivel' + j]
-            }
-            else {
-               // return
+                _dataSource[i]['Data.actividad'] = userInput.padEnd(j * 5) + _dataSource[i]['Data.actividadNivel' + j]
+            } else {
+                // return
             }
         }
     }
@@ -140,42 +138,44 @@ const Cube = (props: any) => {
                             columns={[..._columns]}
                             pagination={false}
                             expandable={{
-                                expandedRowRender: (record) => {
-                                    console.log('expanded:')
-                                    console.log(record)
-                                    let query = {...props.cube_query}
-                                    query.dimensions = [
-                                        ...dimensions.slice(0, props.depth + 1),
-                                        "Data.date"
-                                    ]
 
-                                    let filters = []
-                                    for (let i = 0; i <= props.depth; i++) {
-                                        filters.push(
-                                            {
-                                                "member": "Data.actividadNivel" + props.depth,
-                                                "operator": "equals",
-                                                "values": [record["Data.actividadNivel" + props.depth]]
-                                            }
+                                expandedRowRender: (record) => {
+                                    if (props.depth < 7) {
+                                        let query = {...props.cube_query}
+                                        //if (props.depth < 6) {
+                                        //if (props.depth < 7) {
+                                        query.dimensions = [
+                                            ...dimensions.slice(0, props.depth + 1),
+                                            "Data.date"
+                                        ]
+
+                                        let filters = []
+                                        for (let i = 0; i <= props.depth; i++) {
+                                            filters.push(
+                                                {
+                                                    "member": "Data.actividadNivel" + props.depth,
+                                                    "operator": "equals",
+                                                    "values": [record["Data.actividadNivel" + props.depth]]
+                                                }
+                                            )
+                                        }
+
+                                        query.filters = filters;
+
+                                        return (
+                                            <Cube
+                                                cube_query={query}
+                                                cube_api={props.cube_api}
+                                                cube_token={props.cube_token}
+                                                columns={props.columns ? props.columns : null}
+                                                depth={props.depth + 1}
+                                            />
                                         )
                                     }
-
-                                    query.filters = filters;
-
-                                    return (
-                                        <Cube
-                                            cube_query={query}
-                                            cube_api={props.cube_api}
-                                            cube_token={props.cube_token}
-                                            columns={props.columns ? props.columns : null}
-                                            depth={props.depth + 1}
-                                        />
-                                    )
                                 },
                                 showExpandColumn: true,
-                                //expandRowByClick: true
-                                //childrenColumnName: 'Data.actividadNivel1'
-                                //rowExpandable: (record) => record.name !== 'Not Expandable',
+                              //rowExpandable: (record) => { return (props.depth < 7) },
+                                rowExpandable: (record) => { return (props.depth < 7) },
                             }}
                         />
                     </div>

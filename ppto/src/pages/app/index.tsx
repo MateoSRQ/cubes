@@ -5,15 +5,24 @@ import Cube from '../cube'
 import '@fontsource/archivo'
 import {ConfigProvider, Table} from 'antd';
 
+import { Button, Modal } from 'antd';
 import {Scrollbars} from 'react-custom-scrollbars-2';
 import useDimensions from "react-use-dimensions";
 import numbro from "numbro";
+import {useState} from "react";
 
 const CUBEJS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzY4MzMzMjd9.RE5KaVbp40TkQgnzJ0qOp-1XxAw7d-OaI_aDs25cTzU'
 const CUBEJS_API = 'http://23.254.203.210:4000/cubejs-api/v1'
 
 export default () => {
     const [ref, {x, y, width, height}] = useDimensions();
+    const [modal1Open, setModal1Open] = useState(false);
+
+    const handleItemClick = (record: any) => {
+        console.log(record)
+    }
+
+
     const cubejs_query = {
         "measures": [
             "Data.totalAmount"
@@ -56,10 +65,29 @@ export default () => {
                 "Data.actividadNivel7",
                 "asc"
             ],
+            /*
+            [
+                "Data.categoriaNivel1",
+                "asc"
+            ],
+            [
+                "Data.categoriaNivel2",
+                "asc"
+            ],
+
+            [
+                "Data.centroNivel1",
+                "asc"
+            ],
+            [
+                "Data.centroNivel2",
+                "asc"
+            ],
+             */
             [
                 "Data.date",
                 "asc"
-            ]
+            ],
         ]
     }
     const columns = [
@@ -68,19 +96,67 @@ export default () => {
             "dataIndex": "Data.actividad",
             "name": "Data.actividad",
             render: (text: any, record: any) => (
-                <div style={{ width: '400px', whiteSpace: 'pre-wrap'}}>
+                <div style={{width: '300px', whiteSpace: 'pre-wrap'}}>
                     {text}
                 </div>
             ),
         },
+        /*
+        {
+            "title": "Categoría",
+            "dataIndex": "Data.categoriaNivel1",
+            "name": "Data.categoriaNivel1",
+            render: (text: any, record: any) => (
+                <div style={{width: '300px', whiteSpace: 'pre-wrap'}}>
+                    {text}
+                </div>
+            ),
+        },
+        {
+            "title": "Sub Categoría",
+            "dataIndex": "Data.categoriaNivel2",
+            "name": "Data.categoriaNivel2",
+            render: (text: any, record: any) => (
+                <div style={{width: '300px', whiteSpace: 'pre-wrap'}}>
+                    {text}
+                </div>
+            ),
+        },
+        {
+            "title": "Centro de Costo",
+            "dataIndex": "Data.centroNivel1",
+            "name": "Data.centroNivel1",
+            render: (text: any, record: any) => (
+                <div style={{width: '150px', whiteSpace: 'pre-wrap'}}>
+                    {text}
+                </div>
+            ),
+        },
+        {
+            "title": "Sub Centro de Costo",
+            "dataIndex": "Data.centroNivel2",
+            "name": "Data.centroNivel2",
+            render: (text: any, record: any) => (
+                <div style={{width: '150px', whiteSpace: 'pre-wrap'}}>
+                    {text}
+                </div>
+            ),
+        },
+        */
         {
             "title": "ene-23",
             "dataIndex": "2023-01-01T00:00:00.000,Data.totalAmount",
             "name": "2023-01-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
+                console.log('record')
+                console.log(record)
                 return (
-                    <div style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}>
+                    <div
+                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
+                        onClick={()=> { handleItemClick(record)}}
+                        className={style.item}
+                    >
                         {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
@@ -422,10 +498,22 @@ export default () => {
                             cube_query={cubejs_query}
                             columns={columns}
                             depth={1}
+                            //handleItemClick={handleItemClick}
                         />
                     </Scrollbars>
                 </div>
             </div>
+            <Modal
+                title="20px to Top"
+                centered
+                open={modal1Open}
+                onOk={() => setModal1Open(false)}
+                onCancel={() => setModal1Open(false)}
+            >
+                <p>some contents...</p>
+                <p>some contents...</p>
+                <p>some contents...</p>
+            </Modal>
         </ConfigProvider>
     )
 }
