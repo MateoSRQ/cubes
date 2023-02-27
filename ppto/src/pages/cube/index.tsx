@@ -87,14 +87,6 @@ const Cube = (props: any) => {
         "Data.actividadNivel7",
     ]
 
-    /*
-    console.log('dimensions')
-    console.log(props.depth + 1)
-    console.log([
-        ...dimensions.slice(0, props.depth + 1),
-        "Data.date"
-    ])
-    */
 
     for (let i = 0; i < _dataSource.length; i++) {
         //_dataSource[i].key = Math.random()
