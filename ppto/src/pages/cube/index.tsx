@@ -10,6 +10,8 @@ import {format, add} from 'date-fns'
 import {es} from 'date-fns/locale';
 import {LoadingOutlined} from '@ant-design/icons';
 import {Spin} from 'antd';
+import hash from 'object-hash'
+
 
 const userInput = '\u200B';
 const antIcon = <LoadingOutlined style={{fontSize: 48}} spin/>
@@ -95,7 +97,7 @@ const Cube = (props: any) => {
     */
 
     for (let i = 0; i < _dataSource.length; i++) {
-        _dataSource[i].key = Math.random()
+        //_dataSource[i].key = Math.random()
         _dataSource[i]['Data.actividad'] = ''
         for (let j = 1; j <= 7; j++) {
             if (_dataSource[i]['Data.actividadNivel' + j] != undefined) {
@@ -104,6 +106,7 @@ const Cube = (props: any) => {
                 // return
             }
         }
+        _dataSource[i].key = hash(_dataSource[i])
     }
 
     return (
@@ -138,7 +141,7 @@ const Cube = (props: any) => {
                             columns={[..._columns]}
                             pagination={false}
                             expandable={{
-
+                                //defaultExpandedRowKeys={},
                                 expandedRowRender: (record) => {
                                     if (props.depth < 7) {
                                         let query = {...props.cube_query}

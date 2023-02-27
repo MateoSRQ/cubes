@@ -10,6 +10,7 @@ import {Scrollbars} from 'react-custom-scrollbars-2';
 import useDimensions from "react-use-dimensions";
 import numbro from "numbro";
 import {useState} from "react";
+import { Drawer } from 'antd';
 
 const CUBEJS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzY4MzMzMjd9.RE5KaVbp40TkQgnzJ0qOp-1XxAw7d-OaI_aDs25cTzU'
 const CUBEJS_API = 'http://23.254.203.210:4000/cubejs-api/v1'
@@ -20,6 +21,7 @@ export default () => {
 
     const handleItemClick = (record: any) => {
         console.log(record)
+        setModal1Open(true)
     }
 
 
@@ -506,7 +508,7 @@ export default () => {
             <Modal
                 title="20px to Top"
                 centered
-                open={modal1Open}
+                //open={modal1Open}
                 onOk={() => setModal1Open(false)}
                 onCancel={() => setModal1Open(false)}
             >
@@ -514,6 +516,11 @@ export default () => {
                 <p>some contents...</p>
                 <p>some contents...</p>
             </Modal>
+            <Drawer title="Basic Drawer" placement="right"  open={modal1Open}>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+            </Drawer>
         </ConfigProvider>
     )
 }
