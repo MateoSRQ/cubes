@@ -25,6 +25,15 @@
 .component :global(.ant-table-row-level-0) * {
 }
 
+.component table :global(.ant-table-cell) th {
+    text-align: 'right' !important;
+}
+
+.component th {
+    text-align: 'right' !important;
+}
+
+
 
 /* [,,,'#6baed6','#4292c6','#2171b5','#084594'] */
 

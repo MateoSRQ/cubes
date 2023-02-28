@@ -316,6 +316,19 @@ export default () => {
             }
         },
         {
+            "title": "2023",
+            "dataIndex": "s2023",
+            "name": "s2023",
+            "width": "200px",
+            "render": function (text: any, record: any, index: any) {
+                return (
+                    <div style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right', textShadow: '.5px 0 0 currentColor'}}>
+                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
+                    </div>
+                )
+            }
+        },
+        {
             "title": "ene-24",
             "dataIndex": "2024-01-01T00:00:00.000,Data.totalAmount",
             "name": "2024-01-01T00:00:00.000,Data.totalAmount",

@@ -90,6 +90,8 @@ const Cube = (props: any) => {
 
     for (let i = 0; i < _dataSource.length; i++) {
         //_dataSource[i].key = Math.random()
+        console.log('DATASOURCE')
+        console.log(_dataSource)
         _dataSource[i]['Data.actividad'] = ''
         for (let j = 1; j <= 7; j++) {
             if (_dataSource[i]['Data.actividadNivel' + j] != undefined) {
@@ -99,6 +101,33 @@ const Cube = (props: any) => {
             }
         }
         _dataSource[i].key = hash(_dataSource[i])
+        _dataSource[i]['s2023'] = 
+            _dataSource[i]['2023-01-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2023-02-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2023-03-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2023-04-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2023-05-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2023-06-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2023-07-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2023-08-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2023-09-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2023-10-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2023-11-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2023-12-01T00:00:00.000,Data.totalAmount']
+        _dataSource[i]['s2024'] = 
+            _dataSource[i]['2024-01-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2024-02-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2024-03-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2024-04-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2024-05-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2024-06-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2024-07-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2024-08-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2024-09-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2024-10-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2024-11-01T00:00:00.000,Data.totalAmount'] +
+            _dataSource[i]['2024-12-01T00:00:00.000,Data.totalAmount']
+
     }
 
     return (
