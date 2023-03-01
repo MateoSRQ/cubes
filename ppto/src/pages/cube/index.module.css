@@ -38,8 +38,8 @@
 /* [,,,'#6baed6','#4292c6','#2171b5','#084594'] */
 
 .loader {
-    width: 100%;
-    height: 100%;
+    width: 101%;
+    height: 101%;
     background-color: white;
     display: flex;
     justify-items: center;

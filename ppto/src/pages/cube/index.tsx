@@ -12,7 +12,6 @@ import {LoadingOutlined} from '@ant-design/icons';
 import {Spin} from 'antd';
 import hash from 'object-hash'
 
-
 const userInput = '\u200B';
 const antIcon = <LoadingOutlined style={{fontSize: 48}} spin/>
 
@@ -24,16 +23,7 @@ const Cube = (props: any) => {
     let _dataSource: any = []
     let _columns = new Set()
 
-
-    console.log('cube')
-    console.log(props)
-    console.log('isLoading: ' + isLoading)
-    console.log('error: ' + error)
-    console.log('progress: ' + JSON.stringify(progress))
-
-    if (!resultSet) {
-        return null;
-    } else {
+    if (resultSet) {
         _dataSource = resultSet?.tablePivot({
             x: ['Data.actividad'],
             y: ['Data.date', 'measures']
@@ -87,7 +77,6 @@ const Cube = (props: any) => {
         "Data.actividadNivel7",
     ]
 
-
     for (let i = 0; i < _dataSource.length; i++) {
         //_dataSource[i].key = Math.random()
         console.log('DATASOURCE')
@@ -102,31 +91,31 @@ const Cube = (props: any) => {
         }
         _dataSource[i].key = hash(_dataSource[i])
         _dataSource[i]['s2023'] = 
-            _dataSource[i]['2023-01-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2023-02-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2023-03-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2023-04-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2023-05-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2023-06-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2023-07-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2023-08-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2023-09-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2023-10-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2023-11-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2023-12-01T00:00:00.000,Data.totalAmount']
+            Number(_dataSource[i]['2023-01-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2023-02-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2023-03-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2023-04-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2023-05-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2023-06-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2023-07-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2023-08-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2023-09-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2023-10-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2023-11-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2023-12-01T00:00:00.000,Data.totalAmount'])
         _dataSource[i]['s2024'] = 
-            _dataSource[i]['2024-01-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2024-02-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2024-03-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2024-04-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2024-05-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2024-06-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2024-07-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2024-08-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2024-09-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2024-10-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2024-11-01T00:00:00.000,Data.totalAmount'] +
-            _dataSource[i]['2024-12-01T00:00:00.000,Data.totalAmount']
+            Number(_dataSource[i]['2024-01-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2024-02-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2024-03-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2024-04-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2024-05-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2024-06-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2024-07-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2024-08-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2024-09-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2024-10-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2024-11-01T00:00:00.000,Data.totalAmount'])+
+            Number(_dataSource[i]['2024-12-01T00:00:00.000,Data.totalAmount'])
 
     }
 
@@ -150,7 +139,7 @@ const Cube = (props: any) => {
         >
             <div className={style.component}>
                 <div className={style.container}>
-                    {isLoading &&
+                    {(!resultSet || isLoading) &&
                         <div className={style.loader}>
                             <Spin indicator={antIcon}/>
                         </div>
@@ -162,12 +151,9 @@ const Cube = (props: any) => {
                             columns={[..._columns]}
                             pagination={false}
                             expandable={{
-                                //defaultExpandedRowKeys={},
                                 expandedRowRender: (record) => {
                                     if (props.depth < 7) {
                                         let query = {...props.cube_query}
-                                        //if (props.depth < 6) {
-                                        //if (props.depth < 7) {
                                         query.dimensions = [
                                             ...dimensions.slice(0, props.depth + 1),
                                             "Data.date"
@@ -198,7 +184,6 @@ const Cube = (props: any) => {
                                     }
                                 },
                                 showExpandColumn: true,
-                              //rowExpandable: (record) => { return (props.depth < 7) },
                                 rowExpandable: (record) => { return (props.depth < 7) },
                             }}
                         />

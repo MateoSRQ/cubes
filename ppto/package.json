@@ -24,7 +24,8 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-custom-scrollbars-2": "^4.5.0",
     "react-dom": "^18.2.0",
-    "react-use-dimensions": "^1.2.1"
+    "react-use-dimensions": "^1.2.1",
+    "react-use-loading": "^0.1.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
