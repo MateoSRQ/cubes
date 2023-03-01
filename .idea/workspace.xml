@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8231efb8-596f-4e02-a39b-83215908aa79" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppto/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ppto/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppto/src/pages/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/ppto/src/pages/app/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppto/src/pages/cube/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/ppto/src/pages/cube/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppto/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ppto/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +54,7 @@
       <workItem from="1677026504798" duration="5949000" />
       <workItem from="1677205727744" duration="4890000" />
       <workItem from="1677354814024" duration="7034000" />
-      <workItem from="1677473969859" duration="6529000" />
+      <workItem from="1677473969859" duration="10941000" />
     </task>
     <servers />
   </component>
@@ -85,7 +82,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/ppto/src/pages/cube/index.tsx</url>
-          <line>144</line>
+          <line>136</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
