@@ -3,7 +3,7 @@ import style from './index.module.css'
 import Header from '../header'
 import Cube from '../cube'
 import '@fontsource/archivo'
-import {ConfigProvider, Spin, Table, Tabs} from 'antd';
+import {ConfigProvider, Spin, Table, Tabs, List} from 'antd';
 import cubejs from '@cubejs-client/core';
 
 import { Button, Modal } from 'antd';
@@ -16,6 +16,7 @@ import type { TabsProps } from 'antd';
 import objectHash from "object-hash";
 import { useLoading } from 'react-use-loading';
 import {LoadingOutlined} from "@ant-design/icons";
+import { format} from 'date-fns'
 
 
 const antIcon = <LoadingOutlined style={{fontSize: 48}} spin/>
@@ -89,6 +90,34 @@ export default () => {
         ],
         "order": [
             [
+                "Data.actividadNivel1",
+                "asc"
+            ],
+            [
+                "Data.actividadNivel2",
+                "asc"
+            ],
+            [
+                "Data.actividadNivel3",
+                "asc"
+            ],
+            [
+                "Data.actividadNivel4",
+                "asc"
+            ],
+            [
+                "Data.actividadNivel5",
+                "asc"
+            ],
+            [
+                "Data.actividadNivel6",
+                "asc"
+            ],
+            [
+                "Data.actividadNivel7",
+                "asc"
+            ],
+            [
                 "Data.categoriaNivel1",
                 "asc"
             ],
@@ -155,12 +184,25 @@ export default () => {
             centroResult.loadResponse.results[0].data[i].key = objectHash(centroResult.loadResponse.results[0].data[i])
         }
 
+        //{"Data.actividadNivel1":"Actividad 2","Data.actividadNivel2":"Actividad 2.1","Data.actividadNivel3":"Actividad 2.1.4","Data.actividadNivel4":"Actividad 2.1.4.1","Data.actividadNivel5":"Actividad 2.1.4.1.2","2024-08-01T00:00:00.000,Data.totalAmount":"110636.92","2023-08-01T00:00:00.000,Data.totalAmount":"148418.17","2024-12-01T00:00:00.000,Data.totalAmount":"214835.50999999998","2024-03-01T00:00:00.000,Data.totalAmount":"52548.00000000001","2023-06-01T00:00:00.000,Data.totalAmount":"117555.69","2023-10-01T00:00:00.000,Data.totalAmount":"205803.52999999997","2023-02-01T00:00:00.000,Data.totalAmount":"46483.95999999999","2024-07-01T00:00:00.000,Data.totalAmount":"95982.84000000001","2023-04-01T00:00:00.000,Data.totalAmount":"93310.05","2023-01-01T00:00:00.000,Data.totalAmount":"32320.940000000002","2023-03-01T00:00:00.000,Data.totalAmount":"39090.57","2024-04-01T00:00:00.000,Data.totalAmount":"73518.78000000001","2023-05-01T00:00:00.000,Data.totalAmount":"64946.130000000005","2024-02-01T00:00:00.000,Data.totalAmount":"33993.850000000006","2024-11-01T00:00:00.000,Data.totalAmount":"196194.05999999997","2024-09-01T00:00:00.000,Data.totalAmount":"155395.56","2023-07-01T00:00:00.000,Data.totalAmount":"113147.25999999998","2024-10-01T00:00:00.000,Data.totalAmount":"163313.84999999998","2023-11-01T00:00:00.000,Data.totalAmount":"199313.38","2023-12-01T00:00:00.000,Data.totalAmount":"208806.47999999995","2024-06-01T00:00:00.000,Data.totalAmount":"122465.56","2024-05-01T00:00:00.000,Data.totalAmount":"92941.29999999999","2024-01-01T00:00:00.000,Data.totalAmount":"35357.69","2023-09-01T00:00:00.000,Data.totalAmount":"150362.09000000005","Data.actividad":"​ Actividad 2.1.4.1.2","key":"ae23d34e6b551fd84f0afea1b5c0cb0d3ced3aab","s2023":1419558.25,"s2024":1347183.92}
+        //2023-01-01//
 
+        let _record = [
+            {title: 'Actividad Nivel 1', description: record["Data.actividadNivel1"]?record["Data.actividadNivel1"]:'' },
+            {title: 'Actividad Nivel 2', description: record["Data.actividadNivel2"]?record["Data.actividadNivel2"]:'' },
+            {title: 'Actividad Nivel 3', description: record["Data.actividadNivel3"]?record["Data.actividadNivel3"]:'' },
+            {title: 'Actividad Nivel 4', description: record["Data.actividadNivel4"]?record["Data.actividadNivel4"]:'' },
+            {title: 'Actividad Nivel 5', description: record["Data.actividadNivel5"]?record["Data.actividadNivel5"]:'' },
+            {title: 'Actividad Nivel 6', description: record["Data.actividadNivel6"]?record["Data.actividadNivel6"]:'' },
+            {title: 'Actividad Nivel 7', description: record["Data.actividadNivel7"]?record["Data.actividadNivel7"]:'' }
+        ]
+            
+        
 
         setData({
             categoria: categoriaResult,
             centro: centroResult,
-            record: record,
+            record: _record,
             date: date
         })
 
@@ -805,7 +847,7 @@ export default () => {
             )
         },
         {
-            "title": "SubCentro de Costo",
+            "title": "Sub Centro de Costo",
             "dataIndex": "Data.centroNivel2",
             "name": "Data.centroNivel2",
             render: (text: any, record: any) => (
@@ -926,6 +968,34 @@ export default () => {
                 onClose={() => {
                     setData(false)
                 }} >
+                    {data && <div
+                    style={{
+                        color: '#066ec1',
+                        textAlign: 'center',
+                        fontSize: '1.5rem',
+                        fontWeight: '600',
+                        letterSpacing: '-.5px',
+                        textTransform: 'uppercase'
+                    }}
+                    >{data.date}</div> }
+                    {
+                        data && 
+                        <List
+                        itemLayout="horizontal"
+                        style={{marginBottom: '20px'}}
+                        size="small"
+                        dataSource={data.record}
+                        renderItem={(item: any, index: any) => (
+                          <List.Item>
+                            <List.Item.Meta
+                                title={item.title}
+                                description={item.description}
+                            />
+                          </List.Item>
+                        )}
+                      />
+                    }
+                    
                    <Tabs defaultActiveKey="1" items={items}  />;
             </Drawer>
         </ConfigProvider>
