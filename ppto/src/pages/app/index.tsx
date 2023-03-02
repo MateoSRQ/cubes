@@ -90,6 +90,14 @@ export default () => {
         ],
         "order": [
             [
+                "Data.categoriaNivel1",
+                "asc"
+            ],
+            [
+                "Data.categoriaNivel2",
+                "asc"
+            ],
+            [
                 "Data.actividadNivel1",
                 "asc"
             ],
@@ -115,14 +123,6 @@ export default () => {
             ],
             [
                 "Data.actividadNivel7",
-                "asc"
-            ],
-            [
-                "Data.categoriaNivel1",
-                "asc"
-            ],
-            [
-                "Data.categoriaNivel2",
                 "asc"
             ],
             [
