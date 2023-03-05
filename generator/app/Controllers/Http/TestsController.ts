@@ -7,38 +7,38 @@ const cp = [
     name: "Personal Docente",
     children: [
       { name: "Docentes a tiempo completo - DTC" },
-      { name: "Docentes a tiempo parcial - DTP" },       
+      { name: "Docentes a tiempo parcial - DTP" },
     ]
   },
   {
     name: "Personal No Docente",
     children: [
       { name: "Persional Operativo (Sede - Filial)" },
-      { name: "Personal Administrativo Back Office (Sede - Filial)" },      
-      { name: "Personal Administrativo (Back Office) Oficina Central" },      
-      { name: "Personal de Ventas (Back Office) - Oficina Central" },       
+      { name: "Personal Administrativo Back Office (Sede - Filial)" },
+      { name: "Personal Administrativo (Back Office) Oficina Central" },
+      { name: "Personal de Ventas (Back Office) - Oficina Central" },
     ]
   },
   {
     name: "Alquileres",
     children: [
       { name: "Alquileres de local" },
-      { name: "Alquiler otros" },       
+      { name: "Alquiler otros" },
     ]
   },
   {
     name: "Seguridad y vigilancia",
     children: [
       { name: "Seguridad y vigilancia" },
-      { name: "Seguridad informática" },       
+      { name: "Seguridad informática" },
     ]
   },
   {
     name: "Mantenimiento y limpieza",
     children: [
       { name: "Limpieza" },
-      { name: "Mantenimiento de infraestructura física" },       
-      { name: "Mantenimiento de infraestructura tecnológica" },     
+      { name: "Mantenimiento de infraestructura física" },
+      { name: "Mantenimiento de infraestructura tecnológica" },
     ]
   },
   {
@@ -178,7 +178,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -191,7 +191,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -204,7 +204,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -217,7 +217,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -230,7 +230,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -243,7 +243,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -256,7 +256,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -269,7 +269,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -282,7 +282,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -295,7 +295,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -308,7 +308,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -321,7 +321,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   },
   {
@@ -334,7 +334,7 @@ const cc = [
       { name: "Lima - La Victoria" },
       { name: "Piura" },
       { name: "Coronel Portillo" },
-      { name: "General" },    
+      { name: "General" },
     ]
   }
 ]
@@ -344,35 +344,37 @@ export default class TestsController {
 
 
   public async index() {
-    for (let i = 1; i <= 5; i += Math.floor(Math.random()*3+1)) {
-      for (let j = 1; j <= 5; j += Math.floor(Math.random()*3+1)) {
-        for (let k = 1; k <= 5; k += Math.floor(Math.random()*3+1)) {
-          for (let l = 1; l <= 5; l += Math.floor(Math.random()*3+1)) {
-            for (let m = 1; m <= 5; m += Math.floor(Math.random()*3+1)) {
-              for (let n = 1; n <= 5; n += Math.floor(Math.random()*3+1)) {
-                for (let o = 1; o <= 5; o += Math.floor(Math.random()*3+1)) {
-                  for (let p = 1; p <= 5; p += Math.floor(Math.random()*3+1)) {
-                    for (let q = 1; q <= 5; q += Math.floor(Math.random()*3+1)) {
-                      for (let r = 1; r <= 5; r += Math.floor(Math.random()*3+1)) {
-                        for (let s = 1; s <= 5; s += Math.floor(Math.random()*3+1)) {
+    for (let i = 1; i <= cp.length; i++) {
+      for (let j = 1; j <= cp[i-1].children.length; j++) {
+        for (let k = 1; k <= cc.length; k++) {
+          for (let l = 1; l <= cc[k-1].children.length; l += Math.floor(Math.random()*2+1)) {
+            for (let m = 1; m <= 8; m += Math.floor(Math.random()*2+1)) {
+              for (let n = 1; n <= 6; n += Math.floor(Math.random()*2+1)) {
+                for (let o = 1; o <= 5; o += Math.floor(Math.random()*2+1)) {
+                  for (let p = 1; p <= 5; p += Math.floor(Math.random()*2+1)) {
+                    for (let q = 1; q <= 5; q += Math.floor(Math.random()*2+1)) {
+                      for (let r = 1; r <= 5; r += Math.floor(Math.random()*2+1)) {
+                        for (let s = 1; s <= 5; s += Math.floor(Math.random()*2+1)) {
                           for (let t = 2023; t <= 2024; t++) {
                             for (let u = Math.floor(Math.random()*12+1); u <= 12; u += Math.floor(Math.random()*2+1)) {
-                              const data = new Data()
-                              await data.fill({
-                                "categoriaNivel1": i + " " + cp[i].name,
-                                "categoriaNivel2": i + "." + j + " " + cp[i].children[j].name,
-                                "centroNivel1":  k + " " + cc[k].name,
-                                "centroNivel2":  k + "." + l  + cc[k].children[l].name,
-                                "actividadNivel1": "OBIP " + m,
-                                "actividadNivel2": "Objectivo General " + m + "." + n,
-                                "actividadNivel3": "Objectivo Específico" + m + "." + n + "." + o,
-                                "actividadNivel4": "Actividad " + m + "." + n + "." + o + "." + p,
-                                "actividadNivel5": "Sub-Actividad " + m + "." + n + "." + o + "." + p + "." + q,
-                                "actividadNivel6": "Tarea " + m + "." + n + "." + o + "." + p + "." + q + "." + r,
-                                "actividadNivel7": "Sub-Tarea " + m + "." + n + "." + o + "." + p + "." + q + "." + r + "." +s,
-                                "date": new Date(t.toString() + "-" + u.toString() + "-01") ,
-                                "monto": (Math.random()*10000 + 1000).toFixed(2)
-                              }).save()
+                              if (Math.random() >= .99) {
+                                const data = new Data()
+                                await data.fill({
+                                  "categoriaNivel1": i + ". " + cp[i - 1].name,
+                                  "categoriaNivel2": i + "." + j + ". " + cp[i - 1].children[j - 1].name,
+                                  "centroNivel1": k + ". " + cc[k - 1].name,
+                                  "centroNivel2": k + "." + l + ". " + cc[k - 1].children[l - 1].name,
+                                  "actividadNivel1": "OBIP " + m,
+                                  "actividadNivel2": "Objetivo General " + m + "." + n,
+                                  "actividadNivel3": "Objetivo Específico" + m + "." + n + "." + o,
+                                  "actividadNivel4": "Actividad " + m + "." + n + "." + o + "." + p,
+                                  "actividadNivel5": "Sub-Actividad " + m + "." + n + "." + o + "." + p + "." + q,
+                                  "actividadNivel6": "Tarea " + m + "." + n + "." + o + "." + p + "." + q + "." + r,
+                                  "actividadNivel7": "Sub-Tarea " + m + "." + n + "." + o + "." + p + "." + q + "." + r + "." + s,
+                                  "date": new Date(t.toString() + "-" + u.toString() + "-01"),
+                                  "monto": (Math.random() * 10000 + 1000).toFixed(2)
+                                }).save()
+                              }
                             }
                           }
                         }

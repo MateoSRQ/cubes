@@ -4,6 +4,11 @@
     /*margin: 10px;*/
 }
 
+.component :global(.ant-table-cell) {
+    text-align: right !important;
+}
+
+
 .component :global(.ant-table-expanded-row-level-1) > td {
     padding: 0px !important;
 }

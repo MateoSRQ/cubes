@@ -23,6 +23,7 @@
     margin-top: 20px;
 }
 
+
 .container {
     width: calc(100% - 40px);
     height: calc(100% - 40px);
@@ -58,4 +59,11 @@
     position: absolute;
     z-index: 1000;
 
+}
+
+.logo {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 280px;
 }

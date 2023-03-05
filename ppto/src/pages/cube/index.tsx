@@ -29,42 +29,6 @@ const Cube = (props: any) => {
             y: ['Data.date', 'measures']
         });
         _columns = props.columns
-        /*
-        if (!props.columns) {
-            let columns: any = []
-            for (let i = 0; i < _dataSource.length; i++) {
-                Object.keys(_dataSource[i]).forEach((key: any, index: any) => {
-                    _dataSource[i].key = i;
-                    let tuple = {
-                        title: '',
-                        dataIndex: '',
-                        name: '',
-                        width: '200px',
-                        render: function (text: any, record: any, index: any) {
-                            return text
-                        }
-                    }
-                    tuple.name = key
-                    tuple.dataIndex = key
-                    tuple.width = '200px'
-                    if (key.startsWith('Data.')) {
-                        tuple.title = key.substring(5)
-                        tuple.width = '400px'
-                    } else {
-                        let _name = key.substring(0, 10)
-                        tuple.title = format(add(Date.parse(_name), {days: 1}), 'LLL-yy', {locale: es})
-                        tuple.render = function (text: any, record: any, index: any) {
-                            return numbro(text).format({mantissa: 2, thousandSeparated: true})
-                        }
-                    }
-                    _columns.add(tuple)
-                })
-            }
-        } else {
-            console.log('feed columns')
-            _columns = props.columns
-        }
-        */
     }
 
     const dimensions = [

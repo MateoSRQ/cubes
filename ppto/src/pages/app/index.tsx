@@ -6,17 +6,17 @@ import '@fontsource/archivo'
 import {ConfigProvider, Spin, Table, Tabs, List} from 'antd';
 import cubejs from '@cubejs-client/core';
 
-import { Button, Modal } from 'antd';
+import {Button, Modal} from 'antd';
 import {Scrollbars} from 'react-custom-scrollbars-2';
 import useDimensions from "react-use-dimensions";
 import numbro from "numbro";
 import {useState} from "react";
-import { Drawer } from 'antd';
-import type { TabsProps } from 'antd';
+import {Drawer} from 'antd';
+import type {TabsProps} from 'antd';
 import objectHash from "object-hash";
-import { useLoading } from 'react-use-loading';
+import {useLoading} from 'react-use-loading';
 import {LoadingOutlined} from "@ant-design/icons";
-import { format} from 'date-fns'
+import {format} from 'date-fns'
 
 
 const antIcon = <LoadingOutlined style={{fontSize: 48}} spin/>
@@ -41,11 +41,8 @@ export default () => {
     const cubejsApi = cubejs(CUBEJS_TOKEN, {
         apiUrl: CUBEJS_API,
     });
-    const [{ isLoading }] = useLoading(false);
-
-
-    //return isLoading ? <Spinner /> : <SomeComponent />;
-
+    const [{isLoading}] = useLoading(false);
+    const [loading, setLoading] = useState(false);
     const cubejs_query = {
         "measures": [
             "Data.totalAmount"
@@ -137,6 +134,7 @@ export default () => {
     }
 
     const handleCell = async (record: any, rowIndex: any, date: any) => {
+        setLoading(true)
         let i = 7
         for (i; i >= 1; i--) {
             if (record["Data.actividadNivel" + i] != undefined) {
@@ -171,16 +169,16 @@ export default () => {
             "Data.centroNivel1",
             "Data.centroNivel2",
         ]
-        let centroResult    = await cubejsApi.load(_query)
+        let centroResult = await cubejsApi.load(_query)
 
-        console.log(categoriaResult.loadResponse.results[0].data);
-        console.log(centroResult.loadResponse.results[0].data);
+        //console.log(categoriaResult.loadResponse.results[0].data);
+        //console.log(centroResult.loadResponse.results[0].data);
 
-        for (let i=0; i < categoriaResult.loadResponse.results[0].data; i++) {
+        for (let i = 0; i < categoriaResult.loadResponse.results[0].data; i++) {
             categoriaResult.loadResponse.results[0].data[i].key = objectHash(categoriaResult.loadResponse.results[0].data[i])
         }
 
-        for (let i=0; i < centroResult.loadResponse.results[0].data; i++) {
+        for (let i = 0; i < centroResult.loadResponse.results[0].data; i++) {
             centroResult.loadResponse.results[0].data[i].key = objectHash(centroResult.loadResponse.results[0].data[i])
         }
 
@@ -188,16 +186,36 @@ export default () => {
         //2023-01-01//
 
         let _record = [
-            {title: 'Actividad Nivel 1', description: record["Data.actividadNivel1"]?record["Data.actividadNivel1"]:'' },
-            {title: 'Actividad Nivel 2', description: record["Data.actividadNivel2"]?record["Data.actividadNivel2"]:'' },
-            {title: 'Actividad Nivel 3', description: record["Data.actividadNivel3"]?record["Data.actividadNivel3"]:'' },
-            {title: 'Actividad Nivel 4', description: record["Data.actividadNivel4"]?record["Data.actividadNivel4"]:'' },
-            {title: 'Actividad Nivel 5', description: record["Data.actividadNivel5"]?record["Data.actividadNivel5"]:'' },
-            {title: 'Actividad Nivel 6', description: record["Data.actividadNivel6"]?record["Data.actividadNivel6"]:'' },
-            {title: 'Actividad Nivel 7', description: record["Data.actividadNivel7"]?record["Data.actividadNivel7"]:'' }
+            {
+                title: 'Actividad Nivel 1',
+                description: record["Data.actividadNivel1"] ? record["Data.actividadNivel1"] : ''
+            },
+            {
+                title: 'Actividad Nivel 2',
+                description: record["Data.actividadNivel2"] ? record["Data.actividadNivel2"] : ''
+            },
+            {
+                title: 'Actividad Nivel 3',
+                description: record["Data.actividadNivel3"] ? record["Data.actividadNivel3"] : ''
+            },
+            {
+                title: 'Actividad Nivel 4',
+                description: record["Data.actividadNivel4"] ? record["Data.actividadNivel4"] : ''
+            },
+            {
+                title: 'Actividad Nivel 5',
+                description: record["Data.actividadNivel5"] ? record["Data.actividadNivel5"] : ''
+            },
+            {
+                title: 'Actividad Nivel 6',
+                description: record["Data.actividadNivel6"] ? record["Data.actividadNivel6"] : ''
+            },
+            {
+                title: 'Actividad Nivel 7',
+                description: record["Data.actividadNivel7"] ? record["Data.actividadNivel7"] : ''
+            }
         ]
-            
-        
+
 
         setData({
             categoria: categoriaResult,
@@ -205,10 +223,9 @@ export default () => {
             record: _record,
             date: date
         })
-
+        setLoading(false)
         setModal1Open(true)
     }
-
 
     const columns = [
         {
@@ -225,7 +242,7 @@ export default () => {
             "title": "ene-23",
             "dataIndex": "2023-01-01T00:00:00.000,Data.totalAmount",
             "name": "2023-01-01T00:00:00.000,Data.totalAmount",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-01-01')
@@ -248,7 +265,7 @@ export default () => {
             "title": "feb-23",
             "dataIndex": "2023-02-01T00:00:00.000,Data.totalAmount",
             "name": "2023-02-01T00:00:00.000,Data.totalAmount",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-02-01')
@@ -272,7 +289,7 @@ export default () => {
             "dataIndex": "2023-03-01T00:00:00.000,Data.totalAmount",
             "name": "2023-03-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-03-01')
@@ -295,7 +312,7 @@ export default () => {
             "dataIndex": "2023-04-01T00:00:00.000,Data.totalAmount",
             "name": "2023-04-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-04-01')
@@ -318,7 +335,7 @@ export default () => {
             "dataIndex": "2023-05-01T00:00:00.000,Data.totalAmount",
             "name": "2023-05-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-05-01')
@@ -341,7 +358,7 @@ export default () => {
             "dataIndex": "2023-06-01T00:00:00.000,Data.totalAmount",
             "name": "2023-06-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-06-01')
@@ -364,7 +381,7 @@ export default () => {
             "dataIndex": "2023-07-01T00:00:00.000,Data.totalAmount",
             "name": "2023-07-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-07-01')
@@ -387,7 +404,7 @@ export default () => {
             "dataIndex": "2023-08-01T00:00:00.000,Data.totalAmount",
             "name": "2023-08-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-08-01')
@@ -410,7 +427,7 @@ export default () => {
             "dataIndex": "2023-09-01T00:00:00.000,Data.totalAmount",
             "name": "2023-09-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-09-01')
@@ -433,7 +450,7 @@ export default () => {
             "dataIndex": "2023-10-01T00:00:00.000,Data.totalAmount",
             "name": "2023-10-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-10-01')
@@ -456,7 +473,7 @@ export default () => {
             "dataIndex": "2023-11-01T00:00:00.000,Data.totalAmount",
             "name": "2023-11-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-11-01')
@@ -479,7 +496,7 @@ export default () => {
             "dataIndex": "2023-12-01T00:00:00.000,Data.totalAmount",
             "name": "2023-12-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2023-12-01')
@@ -504,7 +521,13 @@ export default () => {
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
                 return (
-                    <div style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right', textShadow: '.5px 0 0 currentColor'}}>
+                    <div style={{
+                        wordWrap: 'break-word',
+                        wordBreak: 'break-word',
+                        width: '140px',
+                        textAlign: 'right',
+                        textShadow: '.5px 0 0 currentColor'
+                    }}>
                         {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
@@ -515,7 +538,7 @@ export default () => {
             "dataIndex": "2024-01-01T00:00:00.000,Data.totalAmount",
             "name": "2024-01-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-01-01')
@@ -538,7 +561,7 @@ export default () => {
             "dataIndex": "2024-02-01T00:00:00.000,Data.totalAmount",
             "name": "2024-02-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-02-01')
@@ -561,7 +584,7 @@ export default () => {
             "dataIndex": "2024-03-01T00:00:00.000,Data.totalAmount",
             "name": "2024-03-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-03-01')
@@ -584,7 +607,7 @@ export default () => {
             "dataIndex": "2024-04-01T00:00:00.000,Data.totalAmount",
             "name": "2024-04-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-04-01')
@@ -607,7 +630,7 @@ export default () => {
             "dataIndex": "2024-05-01T00:00:00.000,Data.totalAmount",
             "name": "2024-05-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-05-01')
@@ -630,7 +653,7 @@ export default () => {
             "dataIndex": "2024-06-01T00:00:00.000,Data.totalAmount",
             "name": "2024-06-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-06-01')
@@ -653,7 +676,7 @@ export default () => {
             "dataIndex": "2024-07-01T00:00:00.000,Data.totalAmount",
             "name": "2024-07-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-07-01')
@@ -676,7 +699,7 @@ export default () => {
             "dataIndex": "2024-08-01T00:00:00.000,Data.totalAmount",
             "name": "2024-08-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-08-01')
@@ -699,7 +722,7 @@ export default () => {
             "dataIndex": "2024-09-01T00:00:00.000,Data.totalAmount",
             "name": "2024-09-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-09-01')
@@ -722,7 +745,7 @@ export default () => {
             "dataIndex": "2024-10-01T00:00:00.000,Data.totalAmount",
             "name": "2024-10-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-10-01')
@@ -745,7 +768,7 @@ export default () => {
             "dataIndex": "2024-11-01T00:00:00.000,Data.totalAmount",
             "name": "2024-11-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-11-01')
@@ -768,7 +791,7 @@ export default () => {
             "dataIndex": "2024-12-01T00:00:00.000,Data.totalAmount",
             "name": "2024-12-01T00:00:00.000,Data.totalAmount",
             "width": "200px",
-            onCell:  (record: any, rowIndex: any) => {
+            onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
                         handleCell(record, rowIndex, '2024-12-01')
@@ -793,7 +816,13 @@ export default () => {
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
                 return (
-                    <div style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right', textShadow: '.5px 0 0 currentColor'}}>
+                    <div style={{
+                        wordWrap: 'break-word',
+                        wordBreak: 'break-word',
+                        width: '140px',
+                        textAlign: 'right',
+                        textShadow: '.5px 0 0 currentColor'
+                    }}>
                         {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
                     </div>
                 )
@@ -871,7 +900,6 @@ export default () => {
         }
     ]
 
-
     let tab1 = null
     let tab2 = null
     if (data) {
@@ -893,19 +921,17 @@ export default () => {
         )
     }
     const items: TabsProps['items'] = [
-         {
-             key: '1',
-             label: `Por Categoría`,
-             children: tab1
-         },
-         {
-             key: '2',
-             label: `Por Centro de Costo`,
-             children: tab2
-         },
+        {
+            key: '1',
+            label: `Por Categoría`,
+            children: tab1
+        },
+        {
+            key: '2',
+            label: `Por Centro de Costo`,
+            children: tab2
+        },
     ];
-
-
 
     return (
         <ConfigProvider
@@ -927,10 +953,10 @@ export default () => {
         >
             <div className={style.component}>
                 {
-                isLoading &&
-                <div className={style.loader}>
-                    <Spin indicator={antIcon}/>
-                </div>
+                    (isLoading || loading) &&
+                    <div className={style.loader}>
+                        <Spin indicator={antIcon}/>
+                    </div>
                 }
                 <div className={style.container} ref={ref}>
                     <div className={style.menuContainer}>
@@ -958,7 +984,7 @@ export default () => {
                     </Scrollbars>
                 </div>
             </div>
-
+            <img src="assets/logo.png" className={style.logo}/>
             <Drawer
                 title="Categorías / Centros"
                 placement="right"
@@ -967,8 +993,9 @@ export default () => {
                 open={data}
                 onClose={() => {
                     setData(false)
-                }} >
-                    {data && <div
+                }}>
+
+                {data && <div
                     style={{
                         color: '#066ec1',
                         textAlign: 'center',
@@ -977,26 +1004,37 @@ export default () => {
                         letterSpacing: '-.5px',
                         textTransform: 'uppercase'
                     }}
-                    >{data.date}</div> }
+                >{data.date}</div>}
+                <Scrollbars
+                    className={style.tableContainer}
+                    style={{
+                        outline: '1px solid red',
+                        height: 'calc(100% - 60px)'
+                    }}
+                    autoHide={false}
+                >
                     {
-                        data && 
-                        <List
-                        itemLayout="horizontal"
-                        style={{marginBottom: '20px'}}
-                        size="small"
-                        dataSource={data.record}
-                        renderItem={(item: any, index: any) => (
-                          <List.Item>
-                            <List.Item.Meta
-                                title={item.title}
-                                description={item.description}
+                        data &&
+                        <div style={{width: 'calc(100% - 10px)'}}>
+                            <List
+                                itemLayout="horizontal"
+                                style={{marginBottom: '20px'}}
+                                size="small"
+                                dataSource={data.record}
+                                renderItem={(item: any, index: any) => (
+                                    <List.Item>
+                                        <List.Item.Meta
+                                            title={item.title}
+                                            description={item.description}
+                                        />
+                                    </List.Item>
+                                )}
                             />
-                          </List.Item>
-                        )}
-                      />
+                        </div>
                     }
-                    
-                   <Tabs defaultActiveKey="1" items={items}  />;
+
+                    <Tabs defaultActiveKey="1" items={items}/>
+                </Scrollbars>
             </Drawer>
         </ConfigProvider>
     )
