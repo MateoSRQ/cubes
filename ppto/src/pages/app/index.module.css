@@ -9,6 +9,7 @@
     flex-flow: column;
 }
 
+
 .menuContainer {
     width: calc(100% - 40px);
     height: calc(70px);
@@ -43,6 +44,10 @@
 .item:hover {
     text-decoration: underline;
     color: #2762d9 !important;
+}
+
+.bold {
+    text-shadow: currentcolor 0.5px 0px 0px;
 }
 
 

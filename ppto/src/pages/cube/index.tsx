@@ -31,6 +31,35 @@ const Cube = (props: any) => {
         _columns = props.columns
     }
 
+    let lastLine: any = []
+    lastLine['Data.actividadNivel1']= 'Total';
+    lastLine['2023-01-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2023-02-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2023-03-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2023-04-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2023-05-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2023-06-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2023-07-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2023-08-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2023-09-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2023-10-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2023-11-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2023-12-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-01-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-02-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-03-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-04-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-05-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-06-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-07-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-08-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-09-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-10-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-11-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['2024-12-01T00:00:00.000,Data.totalAmount']= 0;
+    lastLine['s2023']= 0;
+    lastLine['s2024']= 0;
+
     for (let i = 0; i < _dataSource.length; i++) {
         _dataSource[i]['Data.' + props.dimension] = ''
         for (let j = 1; j <= props.dimensions.length; j++) {
@@ -40,6 +69,33 @@ const Cube = (props: any) => {
                 // return
             }
         }
+        
+        lastLine['2023-01-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-01-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2023-02-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-02-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2023-03-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-03-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2023-04-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-04-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2023-05-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-05-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2023-06-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-06-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2023-07-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-07-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2023-08-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-08-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2023-09-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-09-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2023-10-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-10-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2023-11-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-11-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2023-12-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2023-12-01T00:00:00.000,Data.totalAmount'])
+
+        lastLine['2024-01-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-01-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2024-02-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-02-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2024-03-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-03-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2024-04-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-04-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2024-05-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-05-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2024-06-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-06-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2024-07-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-07-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2024-08-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-08-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2024-09-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-09-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2024-10-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-10-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2024-11-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-11-01T00:00:00.000,Data.totalAmount'])
+        lastLine['2024-12-01T00:00:00.000,Data.totalAmount'] +=  Number(_dataSource[i]['2024-12-01T00:00:00.000,Data.totalAmount'])
+
         _dataSource[i].key = hash(_dataSource[i])
         _dataSource[i]['s2023'] =
             Number(_dataSource[i]['2023-01-01T00:00:00.000,Data.totalAmount']) +
@@ -68,7 +124,17 @@ const Cube = (props: any) => {
             Number(_dataSource[i]['2024-11-01T00:00:00.000,Data.totalAmount']) +
             Number(_dataSource[i]['2024-12-01T00:00:00.000,Data.totalAmount'])
 
+        lastLine['s2023'] += _dataSource[i]['s2023'];
+        lastLine['s2024'] += _dataSource[i]['s2024']
     }
+
+    //lastLine.key   = hash(lastLine)
+
+    console.log('lastline')
+
+    console.log(_dataSource)
+    _dataSource.push(lastLine)
+    console.log(_dataSource)
 
     return (
         <ConfigProvider
@@ -138,7 +204,9 @@ const Cube = (props: any) => {
                                 },
                                 showExpandColumn: true,
                                 rowExpandable: (record) => {
-                                    return (props.depth < props.dimensions.length)
+                                    console.log('expandable')
+                                    console.log(record)
+                                    return (props.depth < props.dimensions.length &&  record['Data.actividadNivel1'] != 'Total')
                                 },
                             }}
                         />
