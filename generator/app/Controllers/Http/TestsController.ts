@@ -166,7 +166,6 @@ const cp = [
     ]
   },
 ]
-
 const cc = [
   {
     name: "Administración y Negocios Internacionales",
@@ -341,7 +340,14 @@ const cc = [
 
 export default class TestsController {
 
+  public async test() {
+    console.log('xxx')
+    let d = await Data.all();
+    for (let i =0; i<d.length; i++) {
+      console.log(d[i].actividadNivel3)
+    }
 
+  }
 
   public async index() {
     for (let i = 1; i <= cp.length; i++) {
@@ -358,22 +364,81 @@ export default class TestsController {
                           for (let t = 2023; t <= 2024; t++) {
                             for (let u = Math.floor(Math.random()*12+1); u <= 12; u += Math.floor(Math.random()*2+1)) {
                               if (Math.random() >= .99) {
+                                /*
                                 const data = new Data()
                                 await data.fill({
-                                  "categoriaNivel1": i + ". " + cp[i - 1].name,
-                                  "categoriaNivel2": i + "." + j + ". " + cp[i - 1].children[j - 1].name,
-                                  "centroNivel1": k + ". " + cc[k - 1].name,
-                                  "centroNivel2": k + "." + l + ". " + cc[k - 1].children[l - 1].name,
-                                  "actividadNivel1": "OBIP " + m,
-                                  "actividadNivel2": "Objetivo General " + m + "." + n,
-                                  "actividadNivel3": "Objetivo Específico" + m + "." + n + "." + o,
-                                  "actividadNivel4": "Actividad " + m + "." + n + "." + o + "." + p,
-                                  "actividadNivel5": "Sub-Actividad " + m + "." + n + "." + o + "." + p + "." + q,
-                                  "actividadNivel6": "Tarea " + m + "." + n + "." + o + "." + p + "." + q + "." + r,
-                                  "actividadNivel7": "Sub-Tarea " + m + "." + n + "." + o + "." + p + "." + q + "." + r + "." + s,
+                                  "categoriaNivel1": i.toString().padStart(2, '0') + ". " + cp[i - 1].name,
+                                  "categoriaNivel2": i.toString().padStart(2, '0') + "." + j.toString().padStart(2, '0') + ". " + cp[i - 1].children[j - 1].name,
+                                  "centroNivel1": k.toString().padStart(2, '0') + ". " + cc[k - 1].name,
+                                  "centroNivel2": k.toString().padStart(2, '0') + "." + l.toString().padStart(2, '0') + ". " + cc[k - 1].children[l - 1].name,
+                                  "actividadNivel1": "OBIP " + m.toString().padStart(2, '0'),
+                                  "actividadNivel2": "Objetivo General " + m.toString().padStart(2, '0') + "."
+                                                                         + n.toString().padStart(2, '0'),
+                                  "actividadNivel3": "Objetivo Específico " + m.toString().padStart(2, '0') + "."
+                                                                            + n.toString().padStart(2, '0') + "."
+                                                                            + o.toString().padStart(2, '0'),
+                                  "actividadNivel4": "Actividad " + m.toString().padStart(2, '0') + "."
+                                                                  + n.toString().padStart(2, '0') + "."
+                                                                  + o.toString().padStart(2, '0') + "."
+                                                                  + p.toString().padStart(2, '0'),
+                                  "actividadNivel5": "Sub-Actividad " + m.toString().padStart(2, '0') + "."
+                                                                      + n.toString().padStart(2, '0') + "."
+                                                                      + o.toString().padStart(2, '0') + "."
+                                                                      + p.toString().padStart(2, '0') + "."
+                                                                      + q.toString().padStart(2, '0'),
+                                  "actividadNivel6": "Tarea " + m.toString().padStart(2, '0') + "."
+                                                              + n.toString().padStart(2, '0') + "."
+                                                              + o.toString().padStart(2, '0') + "."
+                                                              + p.toString().padStart(2, '0') + "."
+                                                              + q.toString().padStart(2, '0') + "."
+                                                              + r.toString().padStart(2, '0'),
+                                  "actividadNivel7": "Sub-Tarea " + m.toString().padStart(2, '0') + "."
+                                                                  + n.toString().padStart(2, '0') + "."
+                                                                  + o.toString().padStart(2, '0') + "."
+                                                                  + p.toString().padStart(2, '0') + "."
+                                                                  + q.toString().padStart(2, '0') + "."
+                                                                  + r.toString().padStart(2, '0') + "."
+                                                                  + s.toString().padStart(2, '0'),
                                   "date": new Date(t.toString() + "-" + u.toString() + "-01"),
                                   "monto": (Math.random() * 10000 + 1000).toFixed(2)
                                 }).save()
+                                 */
+                                console.log({
+                                  "categoriaNivel1": i.toString().padStart(2, '0') + ". " + cp[i - 1].name,
+                                  "categoriaNivel2": i.toString().padStart(2, '0') + "." + j.toString().padStart(2, '0') + ". " + cp[i - 1].children[j - 1].name,
+                                  "centroNivel1": k.toString().padStart(2, '0') + ". " + cc[k - 1].name,
+                                  "centroNivel2": k.toString().padStart(2, '0') + "." + l.toString().padStart(2, '0') + ". " + cc[k - 1].children[l - 1].name,
+                                  "actividadNivel1": "OBIP " + m.toString().padStart(2, '0'),
+                                  "actividadNivel2": "Objetivo General " + m.toString().padStart(2, '0') + "."
+                                                                         + n.toString().padStart(2, '0'),
+                                  "actividadNivel3": "Objetivo Específico " + m.toString().padStart(2, '0') + "."
+                                                                            + n.toString().padStart(2, '0') + "."
+                                                                            + o.toString().padStart(2, '0'),
+                                  "actividadNivel4": "Actividad " + m.toString().padStart(2, '0') + "."
+                                                                  + n.toString().padStart(2, '0') + "."
+                                                                  + o.toString().padStart(2, '0') + "."
+                                                                  + p.toString().padStart(2, '0'),
+                                  "actividadNivel5": "Sub-Actividad " + m.toString().padStart(2, '0') + "."
+                                                                      + n.toString().padStart(2, '0') + "."
+                                                                      + o.toString().padStart(2, '0') + "."
+                                                                      + p.toString().padStart(2, '0') + "."
+                                                                      + q.toString().padStart(2, '0'),
+                                  "actividadNivel6": "Tarea " + m.toString().padStart(2, '0') + "."
+                                                              + n.toString().padStart(2, '0') + "."
+                                                              + o.toString().padStart(2, '0') + "."
+                                                              + p.toString().padStart(2, '0') + "."
+                                                              + q.toString().padStart(2, '0') + "."
+                                                              + r.toString().padStart(2, '0'),
+                                  "actividadNivel7": "Sub-Tarea " + m.toString().padStart(2, '0') + "."
+                                                                  + n.toString().padStart(2, '0') + "."
+                                                                  + o.toString().padStart(2, '0') + "."
+                                                                  + p.toString().padStart(2, '0') + "."
+                                                                  + q.toString().padStart(2, '0') + "."
+                                                                  + r.toString().padStart(2, '0') + "."
+                                                                  + s.toString().padStart(2, '0'),
+                                  "date": new Date(t.toString() + "-" + u.toString() + "-01"),
+                                  "monto": (Math.random() * 10000 + 1000).toFixed(2)
+                                })
                               }
                             }
                           }

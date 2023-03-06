@@ -25,60 +25,47 @@ const Cube = (props: any) => {
 
     if (resultSet) {
         _dataSource = resultSet?.tablePivot({
-            x: ['Data.actividad'],
+            x: ['Data.' + props.dimension],
             y: ['Data.date', 'measures']
         });
         _columns = props.columns
     }
 
-    const dimensions = [
-        "Data.actividadNivel1",
-        "Data.actividadNivel2",
-        "Data.actividadNivel3",
-        "Data.actividadNivel4",
-        "Data.actividadNivel5",
-        "Data.actividadNivel6",
-        "Data.actividadNivel7",
-    ]
-
     for (let i = 0; i < _dataSource.length; i++) {
-        //_dataSource[i].key = Math.random()
-        console.log('DATASOURCE')
-        console.log(_dataSource)
-        _dataSource[i]['Data.actividad'] = ''
-        for (let j = 1; j <= 7; j++) {
-            if (_dataSource[i]['Data.actividadNivel' + j] != undefined) {
-                _dataSource[i]['Data.actividad'] = userInput.padEnd(j * 5) + _dataSource[i]['Data.actividadNivel' + j]
+        _dataSource[i]['Data.' + props.dimension] = ''
+        for (let j = 1; j <= props.dimensions.length; j++) {
+            if (_dataSource[i]['Data.' + props.dimension + 'Nivel' + j] != undefined) {
+                _dataSource[i]['Data.' + props.dimension] = userInput.padEnd(j * 5) + _dataSource[i]['Data.' + props.dimension + 'Nivel' + j]
             } else {
                 // return
             }
         }
         _dataSource[i].key = hash(_dataSource[i])
-        _dataSource[i]['s2023'] = 
-            Number(_dataSource[i]['2023-01-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2023-02-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2023-03-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2023-04-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2023-05-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2023-06-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2023-07-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2023-08-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2023-09-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2023-10-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2023-11-01T00:00:00.000,Data.totalAmount'])+
+        _dataSource[i]['s2023'] =
+            Number(_dataSource[i]['2023-01-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2023-02-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2023-03-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2023-04-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2023-05-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2023-06-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2023-07-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2023-08-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2023-09-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2023-10-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2023-11-01T00:00:00.000,Data.totalAmount']) +
             Number(_dataSource[i]['2023-12-01T00:00:00.000,Data.totalAmount'])
-        _dataSource[i]['s2024'] = 
-            Number(_dataSource[i]['2024-01-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2024-02-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2024-03-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2024-04-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2024-05-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2024-06-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2024-07-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2024-08-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2024-09-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2024-10-01T00:00:00.000,Data.totalAmount'])+
-            Number(_dataSource[i]['2024-11-01T00:00:00.000,Data.totalAmount'])+
+        _dataSource[i]['s2024'] =
+            Number(_dataSource[i]['2024-01-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2024-02-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2024-03-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2024-04-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2024-05-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2024-06-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2024-07-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2024-08-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2024-09-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2024-10-01T00:00:00.000,Data.totalAmount']) +
+            Number(_dataSource[i]['2024-11-01T00:00:00.000,Data.totalAmount']) +
             Number(_dataSource[i]['2024-12-01T00:00:00.000,Data.totalAmount'])
 
     }
@@ -119,7 +106,7 @@ const Cube = (props: any) => {
                                     if (props.depth < 7) {
                                         let query = {...props.cube_query}
                                         query.dimensions = [
-                                            ...dimensions.slice(0, props.depth + 1),
+                                            ...props.dimensions.slice(0, props.depth + 1),
                                             "Data.date"
                                         ]
 
@@ -127,9 +114,9 @@ const Cube = (props: any) => {
                                         for (let i = 0; i <= props.depth; i++) {
                                             filters.push(
                                                 {
-                                                    "member": "Data.actividadNivel" + props.depth,
+                                                    "member": "Data." + props.dimension + "Nivel" + props.depth,
                                                     "operator": "equals",
-                                                    "values": [record["Data.actividadNivel" + props.depth]]
+                                                    "values": [record["Data." + props.dimension + "Nivel" + props.depth]]
                                                 }
                                             )
                                         }
@@ -143,12 +130,16 @@ const Cube = (props: any) => {
                                                 cube_token={props.cube_token}
                                                 columns={props.columns ? props.columns : null}
                                                 depth={props.depth + 1}
+                                                dimensions={props.dimensions}
+                                                dimension={props.dimension}
                                             />
                                         )
                                     }
                                 },
                                 showExpandColumn: true,
-                                rowExpandable: (record) => { return (props.depth < 7) },
+                                rowExpandable: (record) => {
+                                    return (props.depth < props.dimensions.length)
+                                },
                             }}
                         />
                     </div>
