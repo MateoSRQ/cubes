@@ -21,6 +21,7 @@ const Cube = (props: any) => {
     });
     const {resultSet, isLoading, error, progress} = useCubeQuery(props.cube_query, {cubejsApi: cubejsApi});
     let _dataSource: any = []
+    let _dataColor: any = []
     let _columns = new Set()
 
     if (resultSet) {
@@ -127,14 +128,42 @@ const Cube = (props: any) => {
         lastLine['s2023'] += _dataSource[i]['s2023'];
         lastLine['s2024'] += _dataSource[i]['s2024']
     }
-
     //lastLine.key   = hash(lastLine)
-
-    console.log('lastline')
-
-    console.log(_dataSource)
+    //console.log('lastline')
     _dataSource.push(lastLine)
-    console.log(_dataSource)
+
+    console.log('xxx')
+    console.log(props)
+
+    if (props.percentage) {
+        for (let i = 0; i < _dataSource.length; i++) {
+            _dataSource[i]['2023-01-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-01-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-01-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2023-02-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-02-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-02-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2023-03-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-03-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-03-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2023-04-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-04-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-04-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2023-05-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-05-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-05-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2023-06-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-06-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-06-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2023-07-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-07-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-07-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2023-08-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-08-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-08-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2023-09-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-09-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-09-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2023-10-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-10-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-10-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2023-11-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-11-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-11-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2023-12-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2023-12-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2023-12-01T00:00:00.000,Data.totalAmount'] * 100
+
+            _dataSource[i]['2024-01-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-01-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-01-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2024-02-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-02-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-02-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2024-03-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-03-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-03-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2024-04-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-04-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-04-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2024-05-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-05-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-05-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2024-06-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-06-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-06-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2024-07-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-07-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-07-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2024-08-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-08-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-08-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2024-09-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-09-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-09-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2024-10-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-10-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-10-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2024-11-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-11-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-11-01T00:00:00.000,Data.totalAmount'] * 100
+            _dataSource[i]['2024-12-01T00:00:00.000,Data.totalAmount'] = _dataSource[i]['2024-12-01T00:00:00.000,Data.totalAmount'] / _dataSource[_dataSource.length - 1]['2024-12-01T00:00:00.000,Data.totalAmount'] * 100
+        }
+    }
 
     return (
         <ConfigProvider
@@ -198,14 +227,13 @@ const Cube = (props: any) => {
                                                 depth={props.depth + 1}
                                                 dimensions={props.dimensions}
                                                 dimension={props.dimension}
+                                                percentage={props.percentage}
                                             />
                                         )
                                     }
                                 },
                                 showExpandColumn: true,
                                 rowExpandable: (record) => {
-                                    console.log('expandable')
-                                    console.log(record)
                                     return (props.depth < props.dimensions.length &&  record['Data.actividadNivel1'] != 'Total')
                                 },
                             }}

@@ -4,7 +4,7 @@ import Header from '../header'
 import Cube from '../cube'
 import '@fontsource/archivo'
 import '@fontsource/fragment-mono'
-import {ConfigProvider, Spin, Table, Tabs, List, Radio, Form, Input, Select} from 'antd';
+import {ConfigProvider, Spin, Table, Tabs, List, Radio, Form, Input, Select, Switch} from 'antd';
 import cubejs from '@cubejs-client/core';
 
 import {Button, Modal} from 'antd';
@@ -28,6 +28,7 @@ export default () => {
     const [ref, {x, y, width, height}] = useDimensions();
     const [modal1Open, setModal1Open] = useState(false);
     const [updateOpen, setUpdateOpen] = useState(false);
+    const [swCheck, setSwCheck] = useState(true)
     const [data, setData] = useState(null);
     const cubejsApi = cubejs(CUBEJS_TOKEN, {
         apiUrl: CUBEJS_API,
@@ -209,6 +210,12 @@ export default () => {
     }
     let label1 = ''
     let label2 = ''
+
+    const switchCheck = (checked: boolean) => {
+        //console.log(`switch to ${checked}`);
+        setSwCheck(!swCheck);
+    };
+
     const handleUpdateButton = () => {
         console.log('update')
         setUpdateOpen(true)
@@ -320,7 +327,7 @@ export default () => {
         setData({
             result1: result1,
             result2: result2,
-            //record: _record,
+            record: record,
             date: date
         })
         setLoading(false)
@@ -352,14 +359,30 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
@@ -377,21 +400,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "mar-23",
             "dataIndex": "2023-03-01T00:00:00.000,Data.totalAmount",
             "name": "2023-03-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -403,21 +441,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "abr-23",
             "dataIndex": "2023-04-01T00:00:00.000,Data.totalAmount",
             "name": "2023-04-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -429,21 +482,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "may-23",
             "dataIndex": "2023-05-01T00:00:00.000,Data.totalAmount",
             "name": "2023-05-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -455,21 +523,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "jun-23",
             "dataIndex": "2023-06-01T00:00:00.000,Data.totalAmount",
             "name": "2023-06-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -481,21 +564,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "jul-23",
             "dataIndex": "2023-07-01T00:00:00.000,Data.totalAmount",
             "name": "2023-07-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -507,21 +605,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "ago-23",
             "dataIndex": "2023-08-01T00:00:00.000,Data.totalAmount",
             "name": "2023-08-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -533,21 +646,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "sep-23",
             "dataIndex": "2023-09-01T00:00:00.000,Data.totalAmount",
             "name": "2023-09-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -559,21 +687,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "oct-23",
             "dataIndex": "2023-10-01T00:00:00.000,Data.totalAmount",
             "name": "2023-10-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -585,21 +728,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "nov-23",
             "dataIndex": "2023-11-01T00:00:00.000,Data.totalAmount",
             "name": "2023-11-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -611,21 +769,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "dic-23",
             "dataIndex": "2023-12-01T00:00:00.000,Data.totalAmount",
             "name": "2023-12-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -637,40 +810,67 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "2023",
             "dataIndex": "s2023",
             "name": "s2023",
-            "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div style={{
-                        wordWrap: 'break-word',
-                        wordBreak: 'break-word',
-                        width: '140px',
-                        textAlign: 'right',
-                        textShadow: '.5px 0 0 currentColor'
-                    }}>
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "ene-24",
             "dataIndex": "2024-01-01T00:00:00.000,Data.totalAmount",
             "name": "2024-01-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -682,21 +882,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "feb-24",
             "dataIndex": "2024-02-01T00:00:00.000,Data.totalAmount",
             "name": "2024-02-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -708,21 +923,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "mar-24",
             "dataIndex": "2024-03-01T00:00:00.000,Data.totalAmount",
             "name": "2024-03-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -734,21 +964,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "abr-24",
             "dataIndex": "2024-04-01T00:00:00.000,Data.totalAmount",
             "name": "2024-04-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -760,21 +1005,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "may-24",
             "dataIndex": "2024-05-01T00:00:00.000,Data.totalAmount",
             "name": "2024-05-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -786,21 +1046,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "jun-24",
             "dataIndex": "2024-06-01T00:00:00.000,Data.totalAmount",
             "name": "2024-06-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -812,21 +1087,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "jul-24",
             "dataIndex": "2024-07-01T00:00:00.000,Data.totalAmount",
             "name": "2024-07-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -838,21 +1128,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "ago-24",
             "dataIndex": "2024-08-01T00:00:00.000,Data.totalAmount",
             "name": "2024-08-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -864,21 +1169,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "sep-24",
             "dataIndex": "2024-09-01T00:00:00.000,Data.totalAmount",
             "name": "2024-09-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -890,21 +1210,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "oct-24",
             "dataIndex": "2024-10-01T00:00:00.000,Data.totalAmount",
             "name": "2024-10-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -916,21 +1251,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "nov-24",
             "dataIndex": "2024-11-01T00:00:00.000,Data.totalAmount",
             "name": "2024-11-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -942,21 +1292,36 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
             "title": "dic-24",
             "dataIndex": "2024-12-01T00:00:00.000,Data.totalAmount",
             "name": "2024-12-01T00:00:00.000,Data.totalAmount",
-            "width": "200px",
             onCell: (record: any, rowIndex: any) => {
                 return {
                     onClick: () => {
@@ -968,14 +1333,30 @@ export default () => {
             },
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div
-                        style={{wordWrap: 'break-word', wordBreak: 'break-word', width: '140px', textAlign: 'right'}}
-                        className={(record['Data.actividadNivel1'] != 'Total')?style.item:style.bold}
-                    >
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         },
         {
@@ -984,17 +1365,30 @@ export default () => {
             "name": "s2024",
             "width": "200px",
             "render": function (text: any, record: any, index: any) {
-                return (
-                    <div style={{
-                        wordWrap: 'break-word',
-                        wordBreak: 'break-word',
-                        width: '140px',
-                        textAlign: 'right',
-                        textShadow: '.5px 0 0 currentColor'
-                    }}>
-                        {isNaN(text) ? 0.00 : numbro(text).format({mantissa: 2, thousandSeparated: true})}
-                    </div>
-                )
+                return {
+                    props: {
+                        style: {
+                            backgroundColor: swCheck ? 'rgba(89,205,29,' + text / 100 + ')' : 'white',
+                            color: (swCheck && text > 70)?'white':'black'
+
+                        }
+                    },
+                    children:
+                        <div
+                            style={{
+                                wordWrap: 'break-word',
+                                wordBreak: 'break-word',
+                                width: '140px',
+                                textAlign: 'right',
+                            }}
+                            className={(record['Data.actividadNivel1'] != 'Total') ? style.item : style.bold}
+                        >
+                            {isNaN(text) ? 0.00 : numbro(text).format({
+                                mantissa: 2,
+                                thousandSeparated: true
+                            })} {swCheck ? '%' : null}
+                        </div>
+                }
             }
         }
     ]
@@ -1255,6 +1649,13 @@ export default () => {
                                 <Radio.Button value="categoria">Por Categoría Presupuestal</Radio.Button>
                                 <Radio.Button value="centro">Por Centro de Costo</Radio.Button>
                             </Radio.Group>
+                            <div style={{
+                                position: 'relative',
+                                top: '-67px',
+                                left: '581px',
+                            }}>
+                            <Switch checkedChildren="#" unCheckedChildren="%" checked={swCheck} onChange={switchCheck}/>
+                            </div>
                         </div>
                     </div>
                     <>
@@ -1274,6 +1675,7 @@ export default () => {
                                 cube_query={cubejs_query[dim]}
                                 columns={columns}
                                 depth={1}
+                                percentage={swCheck}
                                 dimensions={dimensions[dim]}
                                 dimension={dim}
                                 //handleItemClick={handleItemClick}
@@ -1310,20 +1712,23 @@ export default () => {
                                 {
                                     data &&
                                     <div style={{width: 'calc(100% - 10px)'}}>
-                                        <List
-                                            itemLayout="horizontal"
-                                            style={{marginBottom: '20px'}}
-                                            size="small"
-                                            dataSource={data.record}
-                                            renderItem={(item: any, index: any) => (
-                                                <List.Item>
-                                                    <List.Item.Meta
-                                                        title={item.title}
-                                                        description={item.description}
-                                                    />
-                                                </List.Item>
-                                            )}
-                                        />
+                                        {/*<code>*/}
+                                        {/*    {JSON.stringify(data)}*/}
+                                        {/*</code>*/}
+                                        {/*<List*/}
+                                        {/*    itemLayout="horizontal"*/}
+                                        {/*    style={{marginBottom: '20px'}}*/}
+                                        {/*    size="small"*/}
+                                        {/*    dataSource={data.record}*/}
+                                        {/*    renderItem={(item: any, index: any) => (*/}
+                                        {/*        <List.Item>*/}
+                                        {/*            <List.Item.Meta*/}
+                                        {/*                title={item.title}*/}
+                                        {/*                description={item.description}*/}
+                                        {/*            />*/}
+                                        {/*        </List.Item>*/}
+                                        {/*    )}*/}
+                                        {/*/>*/}
                                     </div>
                                 }
 

@@ -21,3 +21,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', 'TestsController.index')
+Route.get('/etl', 'TestsController.etl')
+Route.get('/actividades', 'TestsController.actividades')
+Route.get('/categorias', 'TestsController.categorias')
+Route.get('/centros', 'TestsController.centros')

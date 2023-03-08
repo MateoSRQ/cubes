@@ -1,6 +1,8 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Data from 'App/Models/Datum'
+import Database from '@ioc:Adonis/Lucid/Database'
 
+const { connection } = Database.manager.get('primary')
 
 const cp = [
   {
@@ -349,7 +351,7 @@ export default class TestsController {
 
   }
 
-  public async index() {
+  public async etl() {
     for (let i = 1; i <= cp.length; i++) {
       for (let j = 1; j <= cp[i-1].children.length; j++) {
         for (let k = 1; k <= cc.length; k++) {
@@ -363,8 +365,8 @@ export default class TestsController {
                         for (let s = 1; s <= 5; s += Math.floor(Math.random()*2+1)) {
                           for (let t = 2023; t <= 2024; t++) {
                             for (let u = Math.floor(Math.random()*12+1); u <= 12; u += Math.floor(Math.random()*2+1)) {
-                              if (Math.random() >= .99) {
-                                /*
+                              if (Math.random() >= .9995) {
+
                                 const data = new Data()
                                 await data.fill({
                                   "categoriaNivel1": i.toString().padStart(2, '0') + ". " + cp[i - 1].name,
@@ -402,7 +404,7 @@ export default class TestsController {
                                   "date": new Date(t.toString() + "-" + u.toString() + "-01"),
                                   "monto": (Math.random() * 10000 + 1000).toFixed(2)
                                 }).save()
-                                 */
+                                /*
                                 console.log({
                                   "categoriaNivel1": i.toString().padStart(2, '0') + ". " + cp[i - 1].name,
                                   "categoriaNivel2": i.toString().padStart(2, '0') + "." + j.toString().padStart(2, '0') + ". " + cp[i - 1].children[j - 1].name,
@@ -439,6 +441,8 @@ export default class TestsController {
                                   "date": new Date(t.toString() + "-" + u.toString() + "-01"),
                                   "monto": (Math.random() * 10000 + 1000).toFixed(2)
                                 })
+
+                                 */
                               }
                             }
                           }
@@ -453,5 +457,13 @@ export default class TestsController {
         }
       }
     }
+  }
+
+  public async actividades() {
+    const data = await Database
+      .query()  // 👈 gives an instance of select query builder
+      .from('data')
+      .select('id', 'actividad_nivel_7')
+      .distinct('actividad_nivel_7')
   }
 }
